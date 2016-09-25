@@ -1,0 +1,30 @@
+{
+  "name": "efesto-angular",
+  "version": "0.0.1",
+  "description": "Angular sdk for efesto",
+  "scripts": {
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vesuvium/efesto-angular.git"
+  },
+  "author": "Jacopo Cascioli",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vesuvium/efesto-angular/issues"
+  },
+  "homepage": "https://github.com/vesuvium/efesto-angular#readme",
+  "dependencies": {
+    "angular": "^1.5.8"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.8",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-jasmine": "^1.0.2"
+  }
+}
