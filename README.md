@@ -1,3 +1,38 @@
 # Efesto Angular
 
-Angular sdk for [Efesto](https://github.com/Vesuvium/efesto)
+Angular sdk for [Efesto](https://github.com/Vesuvium/efesto) that provides
+an angular module that handles authentication and requests to an Efesto API.
+
+## Installation
+
+```
+npm install efesto-angular
+```
+
+## Usage
+
+Set the domain where the api is located:
+```
+api.domain = 'http://youdomain.com';
+```
+
+Set the credentials for an user:
+```
+api.users.myuser = {'username': 'Iulius', 'password': 'alea'};
+```
+
+Login with that user:
+```
+api.login('myuser', successCallback);
+```
+
+Now you can make requests:
+```
+api.get('/users', {}, successCallback, failureCallback);
+```
+
+If you already know your token, such as when using a public user:
+```
+api.users.public = {'token': 'mytoken'};
+api.user.currentUser = 'public';
+```
