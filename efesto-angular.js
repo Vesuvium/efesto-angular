@@ -8,7 +8,8 @@
     angular.module('efesto.angular').factory('api', [function(){
         var api = {};
         
-        api.version = '0.6.0';
+        api.domain = 'http://127.0.0.1:8000';
+        api.users = {};
         
         return api;
     }]);
