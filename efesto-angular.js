@@ -5,7 +5,7 @@
 (function(){
     'use strict';
 
-    angular.module('efesto.angular').factory('api', [function(){
+    angular.module('efesto.angular').factory('api', ['$http', function($http){
         var api = {};
 
         api.domain = 'http://127.0.0.1:8000';
