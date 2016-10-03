@@ -4,13 +4,13 @@
 
 (function(){
     'use strict';
-    
+
     angular.module('efesto.angular').factory('api', [function(){
         var api = {};
-        
+
         api.domain = 'http://127.0.0.1:8000';
         api.users = {};
-        
+
         api.login = function(user, success){
           if (api.users.hasOwnProperty(user) === false){
             throw Error("Missing credentials");
@@ -109,7 +109,19 @@
           }
         );
       };
-        
+
+      api.isAuthenticated = function(user){
+        if (api.currentUser === user){
+          return true;
+        }
+        if (api.users.hasOwnProperty(user)){
+          if (api.users[user].token){
+            return true;
+          }
+        }
+        return false;
+      };
+
       return api;
     }]);
 })();
