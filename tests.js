@@ -30,6 +30,23 @@ describe('The api factory', function(){
       });
     });
 
+    describe('the addToken method', function(){
+      it('should be able to add a token to an user', function(){
+        var name = 'jacopo';
+        var token = 'python_master_race';
+        api.users[name] = {'username': name};
+        api.addToken(name, token);
+        expect(api.users[name].token).toEqual(token);
+      });
+
+      it('should be able to add a token and create an user', function(){
+        var name = 'jacopo';
+        var token = 'random_bantering';
+        api.addToken(name, token);
+        expect(api.users[name].token).toEqual(token);
+      });
+    });
+
     describe('the isAuthenticated method', function(){
       it('should return false when the user is not authenticated', function(){
         var result = api.isAuthenticated('random');

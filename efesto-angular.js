@@ -15,6 +15,13 @@
           api.users[name] = {'username': name, 'password': password};
         };
 
+        api.addToken = function(user, token){
+          if (api.users.hasOwnProperty(user) === false){
+            api.users[user] = {};
+          }
+          api.users[user].token = token;
+        };
+
         api.login = function(user, success){
           if (api.users.hasOwnProperty(user) === false){
             throw Error("Missing credentials");
@@ -28,7 +35,7 @@
           })
           .then(
             function(response){
-              api.users[user].token = response.data.token;
+              api.addToken(user, response.data.token);
               api.currentUser = user;
               if (success){
                 success(response);
