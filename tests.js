@@ -47,6 +47,32 @@ describe('The api factory', function(){
       });
     });
 
+    describe('the getToken method', function(){
+      beforeEach(function(){
+        this.name = 'jacopo';
+        this.token = 'london calling';
+      });
+
+      it('should return false when the user does not exist', function(){
+        var result = api.getToken(this.name);
+        expect(result).toBe(false);
+      });
+
+      it('should return false when the user does not have a token', function(){
+        api.users[this.name] = {};
+        var result = api.getToken(this.name);
+        expect(result).toBe(false);
+      });
+
+      it('should get an user token', function(){
+        api.users[this.name] = {'token': this.token};
+        var result = api.getToken(this.name);
+        expect(result).toEqual(this.token);
+      });
+
+
+    });
+
     describe('the isAuthenticated method', function(){
       it('should return false when the user is not authenticated', function(){
         var result = api.isAuthenticated('random');

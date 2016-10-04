@@ -22,6 +22,15 @@
           api.users[user].token = token;
         };
 
+        api.getToken = function(user){
+          if (api.users.hasOwnProperty(user)){
+            if (api.users[user].hasOwnProperty('token')){
+              return api.users[user].token;
+            }
+          }
+          return false;
+        }
+
         api.login = function(user, success){
           if (api.users.hasOwnProperty(user) === false){
             throw Error("Missing credentials");
@@ -49,7 +58,7 @@
         var config = {};
         if ( api.currentUser ){
           config.headers = {
-            'Authorization': 'Basic '+ window.btoa('any:' + decodeURIComponent(api.users[api.currentUser].token))
+            'Authorization': 'Basic '+ window.btoa('any:' + decodeURIComponent(api.getToken(api.currentUser))
           };
         }
 
