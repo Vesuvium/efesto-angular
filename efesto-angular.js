@@ -11,6 +11,10 @@
         api.domain = 'http://127.0.0.1:8000';
         api.users = {};
 
+        api.addUser = function(name, password){
+          api.users[name] = {'username': name, 'password': password};
+        };
+
         api.login = function(user, success){
           if (api.users.hasOwnProperty(user) === false){
             throw Error("Missing credentials");

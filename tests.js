@@ -19,6 +19,17 @@ describe('The api factory', function(){
         });
     });
 
+    describe('the adduser method', function(){
+      it('should be able to create an api user', function(){
+        var name = 'Jacopo';
+        var password = 'whatever';
+        api.addUser(name, password);
+        expect(api.users.hasOwnProperty(name)).toBe(true);
+        expect(api.users[name].username).toEqual(name);
+        expect(api.users[name].password).toEqual(password)
+      });
+    });
+
     describe('the isAuthenticated method', function(){
       it('should return false when the user is not authenticated', function(){
         var result = api.isAuthenticated('random');
