@@ -29,7 +29,7 @@
             }
           }
           return false;
-        }
+        };
 
         api.login = function(user, success){
           if (api.users.hasOwnProperty(user) === false){
@@ -58,7 +58,7 @@
         var config = {};
         if ( api.currentUser ){
           config.headers = {
-            'Authorization': 'Basic '+ window.btoa('any:' + decodeURIComponent(api.getToken(api.currentUser))
+            'Authorization': 'Basic '+ window.btoa('any:' + decodeURIComponent(api.getToken(api.currentUser)))
           };
         }
 
