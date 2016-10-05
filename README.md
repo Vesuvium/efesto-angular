@@ -18,7 +18,7 @@ api.domain = 'http://youdomain.com';
 
 Set the credentials for an user:
 ```
-api.users.myuser = {'username': 'Iulius', 'password': 'alea'};
+api.addUser('myuser', 'password');
 ```
 
 Login with that user:
@@ -33,6 +33,6 @@ api.get('/users', {}, successCallback, failureCallback);
 
 If you already know your token, such as when using a public user:
 ```
-api.users.public = {'token': 'mytoken'};
+api.addToken('public', 'mytoken')
 api.user.currentUser = 'public';
 ```
