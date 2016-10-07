@@ -122,4 +122,19 @@ describe('The api factory', function(){
       });
 
     });
+
+    describe('the headers method', function(){
+      it('should return an object', function(){
+        expect(api.headers()).toEqual(jasmine.any(Object));
+      });
+
+      it('should return the auth header if there is a current user', function(){
+        api.users.default = {token: 'mytoken'};
+        api.currentUser = 'default';
+        var expected = {
+          Authorization: 'Basic ' + window.btoa('any:' + decodeURIComponent('mytoken'))
+        }
+        expect(api.headers()).toEqual(expected);
+      });
+    });
 });

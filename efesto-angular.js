@@ -53,6 +53,16 @@
           );
       };
 
+      api.headers = function(){
+        var headers = {};
+        if ( api.currentUser ){
+          var token = api.getToken(api.currentUser);
+          var auth = window.btoa('any:' + decodeURIComponent(token));
+          headers.Authorization =  'Basic ' + auth;
+        }
+        return headers;
+      };
+
       api.isAuthenticated = function(user){
         if (api.currentUser === user){
           return true;
