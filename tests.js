@@ -212,4 +212,30 @@ describe('The api factory', function(){
 
       });
     });
+
+    describe('the resource method', function(){
+      describe('the get action', function(){
+        it('should be able to make get requests', function(){
+          http.when('GET', api.domain + '/tests/100').respond({});
+          api.resource('tests').get({id: 100});
+          http.flush();
+        });
+      });
+
+      describe('the patch action', function(){
+        it('should be able to make patch requests', function(){
+          http.when('PATCH', api.domain + '/patch/200').respond({});
+          api.resource('patch').patch({id: 200});
+          http.flush();
+        });
+      });
+
+      describe('the delete action', function(){
+        it('should be able to make delete requests', function(){
+          http.when('DELETE', api.domain + '/del/300').respond({});
+          api.resource('del').delete({id: 300});
+          http.flush();
+        });
+      });
+    });
 });

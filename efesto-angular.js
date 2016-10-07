@@ -78,6 +78,25 @@
         });
       };
 
+
+      api.resource = function(endpoint){
+        var headers = api.headers();
+        return $resource(api.domain + '/' + endpoint + '/:id', {id: '@id'}, {
+          patch: {
+            method: 'PATCH',
+            headers: headers
+          },
+          get: {
+            method: 'GET',
+            headers: headers
+          },
+          delete: {
+            method: 'DELETE',
+            headers: headers
+          }
+        });
+      };
+
       api.isAuthenticated = function(user){
         if (api.currentUser === user){
           return true;
