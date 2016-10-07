@@ -139,38 +139,40 @@ describe('The api factory', function(){
     });
 
     describe('the collection method', function(){
-      it('should provide a resource that can make get requests', function(){
-        http.when('GET', api.domain + '/tests').respond({});
-        var result = api.collection('tests').get();
-        http.flush();
-      });
+      describe('the get action', function(){
+        it('should be able to make get requests', function(){
+          http.when('GET', api.domain + '/tests').respond({});
+          var result = api.collection('tests').get();
+          http.flush();
+        });
 
-      it('should accept parameters', function(){
-        http.when('GET', api.domain + '/tests?randomness=true').respond({});
-        var result = api.collection('tests').get({randomness: true});
-        http.flush();
-      });
+        it('should accept parameters', function(){
+          http.when('GET', api.domain + '/tests?randomness=true').respond({});
+          var result = api.collection('tests').get({randomness: true});
+          http.flush();
+        });
 
-      it('should accept a success callback', function(){
-        http.when('GET', api.domain + '/tests').respond({});
-        var result = false;
-        var success = function(response){
-          result = true;
-        };
-        api.collection('tests').get({}, success);
-        http.flush();
-        expect(result).toBe(true);
-      });
+        it('should accept a success callback', function(){
+          http.when('GET', api.domain + '/tests').respond({});
+          var result = false;
+          var success = function(response){
+            result = true;
+          };
+          api.collection('tests').get({}, success);
+          http.flush();
+          expect(result).toBe(true);
+        });
 
-      it('should accept a failure callback', function(){
-        http.when('GET', api.domain + '/tests').respond(404, {});
-        var result = false;
-        var failure = function(response){
-          result = true;
-        };
-        api.collection('tests').get({}, function(){}, failure);
-        http.flush();
-        expect(result).toBe(true);
+        it('should accept a failure callback', function(){
+          http.when('GET', api.domain + '/tests').respond(404, {});
+          var result = false;
+          var failure = function(response){
+            result = true;
+          };
+          api.collection('tests').get({}, function(){}, failure);
+          http.flush();
+          expect(result).toBe(true);
+        });
       });
     });
 });
