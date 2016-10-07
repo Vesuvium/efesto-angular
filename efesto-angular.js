@@ -64,6 +64,16 @@
         return headers;
       };
 
+      api.collection = function(endpoint){
+        var headers = api.headers();
+        return $resource(api.domain + '/' + endpoint, {}, {
+          get: {
+            method: 'GET',
+            headers: headers
+          }
+        });
+      };
+
       api.isAuthenticated = function(user){
         if (api.currentUser === user){
           return true;
