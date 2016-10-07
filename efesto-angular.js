@@ -1,11 +1,12 @@
 (function(){
-    angular.module('efesto.angular', []);
+    angular.module('efesto.angular', ['ngResource']);
 })();
 
 (function(){
     'use strict';
 
-    angular.module('efesto.angular').factory('api', ['$http', function($http){
+    angular.module('efesto.angular').factory('api', ['$http', '$resource',
+      function($http, $resource){
         var api = {};
 
         api.domain = 'http://127.0.0.1:8000';
@@ -76,5 +77,6 @@
       };
 
       return api;
-    }]);
+    }
+  ]);
 })();
