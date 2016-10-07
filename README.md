@@ -32,10 +32,28 @@ Login with that user:
 api.login('myuser', successCallback);
 ```
 
-Now you can make requests:
+Now you can make requests to collections:
 ```js
+/* Get list of users */
 var users = api.collection('users');
 users.get({rank: 1}, successCallback, failureCallback);
+
+/* New user */
+var myUser = {name: 'myself', rank: 1, email: 'mail', password: 'passwd'};
+users.post(myUser, null, successCallback, failureCallback);
+```
+
+To resources:
+```js
+var user = api.resource('users');
+/* Get user with id 7 */
+user.get({id: 7}, successCallback, failureCallback);
+
+/* Update user #7's name */
+user.patch({id: 7, name: 'newname'}, successCallback, failureCallback);
+
+/* Delete user #7 */
+user.delete({id: 7}, successCallback, failureCallback);
 ```
 
 If you already know your token, such as when using a public user:
