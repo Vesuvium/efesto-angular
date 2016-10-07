@@ -1,10 +1,11 @@
 describe('The api factory', function(){
 
-    var api;
+    var api, http;
 
     beforeEach(module('efesto.angular'));
     beforeEach(inject(
-        function(_api_){
+        function(_api_, $httpBackend){
+            http = $httpBackend;
             api = _api_;
         }
     ));
@@ -90,5 +91,35 @@ describe('The api factory', function(){
         var result = api.isAuthenticated('random');
         expect(result).toBe(true);
       })
+    });
+
+    describe('the login method', function(){
+      beforeEach(function(){
+        api.users.default = {'name': 'default', 'password': 'default'};
+        http.when('POST', api.domain + '/auth').respond( {token: 'mytoken'} );
+      });
+
+      it('should throw an error when the user does not exist', function(){
+        var f = function(){
+          api.login('random');
+        };
+        expect(f).toThrowError("Missing credentials");
+      });
+
+      it('should get a token', function(){
+        api.login('default');
+        http.flush();
+        expect(api.users.default.token).toEqual('mytoken');
+      });
+
+      it('should allow a success callback', function(){
+        var a = false;
+        api.login('default', function(){
+          a = true;
+        });
+        http.flush();
+        expect(a).toBe(true);
+      });
+
     });
 });
