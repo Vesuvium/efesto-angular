@@ -70,6 +70,10 @@
           get: {
             method: 'GET',
             headers: headers
+          },
+          post: {
+            method: 'POST',
+            headers: headers
           }
         });
       };

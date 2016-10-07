@@ -174,5 +174,42 @@ describe('The api factory', function(){
           expect(result).toBe(true);
         });
       });
+
+      describe('the post action', function(){
+        it('should be able to make post requests', function(){
+          http.when('POST', api.domain + '/tests').respond({});
+          api.collection('tests').post();
+          http.flush();
+        });
+
+        it('should accept parameters', function(){
+          http.when('POST', api.domain + '/post').respond({});
+          api.collection('post').post({unicorns: 1});
+          http.flush();
+        });
+
+        it('should accept a success callback', function(){
+          http.when('POST', api.domain + '/post').respond({});
+          var result = false;
+          var success = function(response){
+            result = true;
+          };
+          api.collection('post').post({}, null, success);
+          http.flush();
+          expect(result).toBe(true);
+        });
+
+        it('should accept a failure callback', function(){
+          http.when('POST', api.domain + '/post').respond(404, {});
+          var result = false;
+          var failure = function(response){
+            result = true;
+          };
+          api.collection('post').post({}, null, function(){}, failure);
+          http.flush();
+          expect(result).toBe(true);
+        });
+
+      });
     });
 });
