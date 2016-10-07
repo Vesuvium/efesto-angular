@@ -1,6 +1,6 @@
 {
   "name": "efesto-angular",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Angular sdk for efesto",
   "scripts": {
     "test": "karma start"
