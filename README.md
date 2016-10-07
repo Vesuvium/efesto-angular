@@ -34,7 +34,8 @@ api.login('myuser', successCallback);
 
 Now you can make requests:
 ```js
-api.get('/users', {}, successCallback, failureCallback);
+var users = api.collection('users');
+users.get({rank: 1}, successCallback, failureCallback);
 ```
 
 If you already know your token, such as when using a public user:
