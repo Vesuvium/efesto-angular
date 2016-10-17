@@ -96,7 +96,7 @@ describe('The api factory', function(){
     describe('the login method', function(){
       beforeEach(function(){
         api.users.default = {'name': 'default', 'password': 'default'};
-        http.when('POST', api.domain + '/auth').respond( {token: 'mytoken'} );
+        http.when('POST', 'http://127.0.0.1:8000/auth').respond( {token: 'mytoken'} );
       });
 
       it('should throw an error when the user does not exist', function(){
@@ -113,6 +113,16 @@ describe('The api factory', function(){
       });
 
       it('should allow a success callback', function(){
+        var a = false;
+        api.login('default', function(){
+          a = true;
+        });
+        http.flush();
+        expect(a).toBe(true);
+      });
+
+      it('should allow a failure callback', function(){
+        http.when('POST', 'http://127.0.0.1:8001/auth').respond(403, {});
         var a = false;
         api.login('default', function(){
           a = true;

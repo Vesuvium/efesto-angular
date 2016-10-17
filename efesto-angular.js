@@ -32,7 +32,7 @@
           return false;
         };
 
-        api.login = function(user, success){
+        api.login = function(user, success, failure){
           if (api.users.hasOwnProperty(user) === false){
             throw Error("Missing credentials");
           }
@@ -49,6 +49,11 @@
               api.currentUser = user;
               if (success){
                 success(response);
+              }
+            },
+            function(response){
+              if (failure){
+                failure(response);
               }
             }
           );
