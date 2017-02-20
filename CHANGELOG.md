@@ -1,5 +1,9 @@
 ## Version 0.4.0
 
+### Version 0.4.2 (20-02-2017)
+* Update to angular 1.5.11
+* Code stlyling improvements
+
 ### Version 0.4.1 (17-10-2016)
 * login accepts a failure callback
 
