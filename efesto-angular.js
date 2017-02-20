@@ -1,5 +1,8 @@
 (function(){
-    angular.module('efesto.angular', ['ngResource']);
+    'use strict';
+
+    angular
+        .module('efesto.angular', ['ngResource']);
 })();
 
 (function(){
